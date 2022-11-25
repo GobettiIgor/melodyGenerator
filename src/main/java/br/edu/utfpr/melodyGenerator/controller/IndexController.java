@@ -11,11 +11,11 @@ public class IndexController {
     public String index(Model model) {
         return "index.html";
     }
-
-    @GetMapping("gerarMelodia.html")
-    public String gerarMelodia(Model model) {
-        return "gerarMelodia.html";
-    }
+/*
+    @GetMapping("generateMelody.html")
+    public String gerarMelodia() {
+        return "redirect:/melodia.html";
+    }*/
 
     @GetMapping("top10.html")
     public String top10(Model model) {

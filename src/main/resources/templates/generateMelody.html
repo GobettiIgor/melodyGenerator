@@ -1,0 +1,185 @@
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<head>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <section class="containerPrincipal d-flex mx-auto flex-column w-100 h-100 p-3 navColor">
+        <main role="main" class="inner cover">
+            <!--/*@thymesVar id="melodyParameter" type="br.edu.utfpr.melodyGenerator.model.MelodyParameter"*/-->
+            <form class="rounded py-3" th:action="@{/generateMelody}" method="post"
+                  th:object="${melodyParameter}">
+                <div class="form-group row py-2">
+                    <h5 class="brown-color">Informe os parâmetros abaixo para gerar a melodia!</h5>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav"
+                           for="controlSelect1">Nome</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <input placeholder="Seu nome" id="controlSelect1" class="form-control text-center"
+                               th:field="*{username}" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav"
+                           for="controlSelect2">Instrumento</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <select id="controlSelect2" class="form-control text-center" th:field="*{instrument_name}"
+                                aria-label="Selecione a nota base">
+                            <option value="Piano">Piano</option>
+                            <option value="Distortion_Guitar">Guitarra</option>
+                            <option value="Violin">Violino</option>
+                            <option value="Viola">Viola</option>
+                            <option value="Trombone">Trombone</option>
+                            <option value="Trumpet">Trompete</option>
+                            <option value="Electric_Bass_Pick">Baixo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav"
+                           for="controlSelect3">Nota escala</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <select id="controlSelect3" class="form-control text-center" th:field="*{main_note_scale}"
+                                aria-label="Selecione a nota base">
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav"
+                           for="controlSelect4">Tipo escala</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <select id="controlSelect4" class="form-control text-center" th:field="*{scale_type}"
+                                aria-label="Selecione a nota base">
+                            <option value="Major">Maior</option>
+                            <option value="Menor">Menor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav"
+                           for="controlSelect5">BPM</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <input placeholder="Batimentos por minuto" id="controlSelect5" class="form-control text-center"
+                               th:field="*{bpm}" type="number" value="120" min="20"
+                               max="1000" step="1"/>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav" for="controlSelect6">Qtd. intervalo de
+                        oitavas</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <select class="form-control text-center" id="controlSelect6" th:field="*{qty_octaves}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <label class="col-sm-6 col-form-label lead letraNav"
+                           for="controlSelect7">Qtd. repetições</label>
+                    <div class="col-sm-5 mr-2 justify-content-center">
+                        <input placeholder="Quantidade de repetições" id="controlSelect7"
+                               class="form-control text-center" th:field="*{qty_repetitions}" type="number" value="5"
+                               min="1" max="100" step="1"/>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-nav py-2 mt-4 border border-dark letraNav"><strong>Gerar</strong>
+                </button>
+                <!--
+                <div class="mb-3 row">
+                    <label for="qty_octaves" class="col-sm-6 col-form-label lead letraNav"></label>
+                    <div class="col-sm-4 mr-2 justify-content-center">
+                        <select class="form-control form-control-plaintext text-center" id="qty_octaves"
+                                th:field="*{qty_octaves}">
+                            <option class="form-control" value="1">1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="bpm" class="col-sm-2 col-form-label">BPM</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" th:field="*{bpm}" id="bpm" type="number" value="120" min="0"
+                               max="1000" step="1"/>
+                    </div>
+                </div>
+-->
+
+
+                <!--
+                <form class="rounded" th:action="@{/melody}" method="post"
+                      th:object="${melodyParameter}">
+                  <p class="lead letraNav">Qtd. intervalo de oitavas</p>
+                  <select th:field="*{qty_octaves}">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <p class="lead letraNav">BPM</p>
+                    <input th:field="*{bpm}" type="number" value="120" min="0" max="1000" step="1"/>
+                  <p class="lead letraNav">Tipo escala</p>
+                  <select th:field="*{scale_type}" aria-label="Selecione a nota base">
+                    <option value="Maior">Maior</option>
+                    <option value="Menor">Menor</option>
+                  </select>
+                  <p class="lead letraNav">Nota escala</p>
+                  <select th:field="*{main_note_scale}" aria-label="Selecione a nota base">
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                  </select>
+                  <p class="lead letraNav">Qtd. repetição</p>
+                  <input th:field="*{qty_repetitions}" type="number" value="5" min="1" max="100" step="1"/>
+                  <p class="lead letraNav">Username</p>
+                  <input th:field="*{username}" type="text"/>
+                  <p class="lead letraNav">
+                  <button class="btn btn-lg btn-secondary" type="submit" >Gerar</button>
+                    <a href="playerAudio.html" class="btn btn-lg btn-secondary">Gerar</a>-->
+                <!--</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div th:if="${!#strings.isEmpty(sucesso)}"
+                         class="alert alert-success">
+                      <i class="fa fa-check-circle"></i>
+                      <span th:text="${sucesso}">Mensagem de sucesso!</span>
+                    </div>
+
+                    <div th:if="${!#strings.isEmpty(erro)}"
+                         class="alert alert-danger">
+                      <i class="fa fa-trash"></i>
+                      <span th:text="${erro}">Mensagem de erro!</span>
+                    </div>
+                  </div>
+                </div>-->
+              </form>
+        </main>
+    </section>
+</section>
+<!--<th:block layout:fragment="javascript">
+  <script type="text/javascript" th:src="@{/js/crud-melodyParameter.js}"></script>
+</th:block> -->
+</body>
+</html>

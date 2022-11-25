@@ -1,0 +1,53 @@
+.rating-group {
+  display: inline-flex;
+}
+
+/* make hover effect work properly in IE */
+.rating-icon {
+  pointer-events: none;
+}
+
+/* hide radio inputs */
+.rating-input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* hide 'none' input from screenreaders */
+.rating-input-none {
+  display: none
+}
+
+/* set icon padding and size */
+.rating-label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+
+/* set default star color */
+.rating-icon-star {
+  color: orange;
+}
+
+/* if any input is checked, make its following siblings grey */
+.rating-input:checked ~ .rating-label .rating-icon--star {
+  color: #ddd;
+}
+
+/* make all stars orange on rating group hover */
+.rating-group:hover .rating-label .rating-icon-star {
+  color: orange;
+}
+
+/* make hovered input's following siblings grey on hover */
+.rating-input:hover ~ .rating-label .rating-icon-star {
+  color: #ddd;
+}
+
+input:disabled {
+  cursor: default;
+  background-color: rgba(59, 59, 59, 0.3);
+  color: rgb(170, 170, 170);
+  border-color: rgba(118, 118, 118, 0.3);
+}

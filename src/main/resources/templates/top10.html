@@ -1,10 +1,154 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!--<link rel="stylesheet" th:href="@{/css/stylesheet.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/generatedMelody.css}"/>
+    <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
 </head>
 <body>
-
+<section layout:fragment="content">
+    <section class="containerPrincipal d-flex mx-auto flex-column w-100 h-100 p-3 navColor">
+        <main role="main" class="inner cover">
+            <table class="table table-striped table-melody text-center p-4 w-100">
+                <thead>
+                <tr class="h-50">
+                    <th scope="col">TOP</th>
+                    <th scope="col">Usuário</th>
+                    <th scope="col">Data melodia</th>
+                    <th scope="col">Play/Pause</th>
+                    <th scope="col">Download MIDI/MP3</th>
+                    <th scope="col"><select id="controlSelect2" class="form-control text-center letraNav"
+                                            aria-label="Nota principal da melodia">
+                        <option class="letraNav">Nota principal da melodia</option>
+                        <option class="letraNav" value="C">C</option>
+                        <option class="letraNav" value="D">D</option>
+                        <option class="letraNav" value="E">E</option>
+                        <option class="letraNav" value="F">F</option>
+                        <option class="letraNav" value="G">G</option>
+                        <option class="letraNav" value="A">A</option>
+                        <option class="letraNav" value="B">B</option>
+                    </select></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="h-50
+">
+                    <th scope="row">1</th>
+                    <td>Hyaxo</td>
+                    <td>25/10/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 1.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Iskuy</td>
+                    <td>03/09/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>G</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Roula</td>
+                    <td>05/09/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Desye</td>
+                    <td>03/11/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Bebei</td>
+                    <td>04/11/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>Sikus</td>
+                    <td>29/10/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Beusa</td>
+                    <td>10/11/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <th scope="row">8</th>
+                    <td>Xecevezi</td>
+                    <td>12/11/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <th scope="row">9</th>
+                    <td>Ficua</td>
+                    <td>13/11/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <th scope="row">10</th>
+                    <td>Olbra</td>
+                    <td>19/10/2022</td>
+                    <td><midi-player
+                            src="http://127.0.0.1:8887/Audio 1.midi"
+                            sound-font visualizer="#myStaffVisualizer">
+                    </midi-player></td>
+                    <td><a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-2 border border-dark letraNav"><strong>Download</strong></a></td>
+                    <td>A</td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+    </section>
+</section>
 </body>
 </html>

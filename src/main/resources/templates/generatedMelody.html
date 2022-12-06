@@ -4,7 +4,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default_layout}">
 <head>
-    <!--<link rel="stylesheet" th:href="@{/css/stylesheet.css}"/>-->
     <script type='text/javascript' src='//www.midijs.net/lib/midi.js'></script>
 </head>
 <body>
@@ -20,15 +19,24 @@
                 <!--/*@thymesVar id="generatedMelody" type="br.edu.utfpr.melodyGenerator.model.GeneratedMelody"*/-->
 
                 <midi-player
-                        src="http://127.0.0.1:8887/Audio 1.midi"
+                        th:src="'http://127.0.0.1:8887/Audio ' + ${generatedMelody.melody_id} + '.midi'"
                         sound-font visualizer="#myStaffVisualizer">
                 </midi-player>
 
                 <midi-visualizer class="py-3" type="staff" id="myStaffVisualizer"
-                                 src="http://127.0.0.1:8887/Audio 2.midi">
+                                 th:src="'http://127.0.0.1:8887/Audio ' + ${generatedMelody.melody_id} + '.midi'">
                 </midi-visualizer>
 
-                <a href="http://127.0.0.1:8887/Audio 2.midi" class="btn btn-nav py-2 mt-4 border border-dark letraNav"><strong>Download da melodia gerada</strong></a>
+                <div id="download">
+                    <a th:href="'http://127.0.0.1:8887/Audio ' + ${generatedMelody.melody_id} + '.midi'"
+                       class="btn btn-nav py-2 mt-4 border border-dark letraNav">
+                        <strong>Download</strong>
+                    </a>
+                    <a href="generateMelody"
+                       class="btn btn-nav py-2 mt-4 border border-dark letraNav">
+                        <strong>Gerar outra melodia</strong>
+                    </a>
+                </div>
 
                 <!-- <audio controls
                      <source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
@@ -42,58 +50,40 @@
 
                 <!--/*@thymesVar id="userFeedback" type="br.edu.utfpr.melodyGenerator.model.UserFeedback"*/-->
 
-                <h4 class="py-4">Deixe Seu Feedback!</h4>
-                <form th:action="@{/generatedMelody}" method="post"
+
+                <form id="form" th:action="@{/generatedMelody}" method="post"
                       th:object="${userFeedback}">
+                    <h4 class="py-4">Deixe Seu Feedback!</h4>
+                    <div th:value="5" class="stars">
+                        <h5>Informe a nota:</h5>
+                        <a><input name="grade" class="rating-input" id="star1" value="1" type="radio" th:field="*{grade}">⭐</a>
+                        <a><input name="grade" class="rating-input" id="star2" value="2" type="radio" th:field="*{grade}">⭐</a>
+                        <a><input name="grade" class="rating-input" id="star3" value="3" type="radio" th:field="*{grade}">⭐</a>
+                        <a><input name="grade" class="rating-input" id="star4" value="4" type="radio" th:field="*{grade}">⭐</a>
+                        <a><input name="grade" class="rating-input" id="star5" value="5" type="radio" th:field="*{grade}">⭐</a>
+                    </div>
                     <div class="form-group row py-2">
-                          <label class="col-sm-6 col-form-label lead letraNav"
-                                 for="grade">Nota</label>
-                          <div class="col-sm-5 mr-2 justify-content-center">
-                              <div class="rating-group">
-                                  <input disabled checked class="rating-input rating-input-none"
-                                         id="grade" value="12" type="radio" th:field="*{grade}">
-                                  <label aria-label="1 star" class="rating-label" for="rating3-1">
-                                      <i class="rating-icon rating-icon-star fa fa-star"></i>
-                                  </label>
-                                  <input class="rating-input" id="rating3-1" value="1" type="radio" th:field="*{grade}">
-                                  <label aria-label="2 stars" class="rating-label" for="rating3-2">
-                                      <i class="rating-icon rating-icon-star fa fa-star"></i>
-                                  </label>
-                                  <input class="rating-input" id="rating3-2" value="2" type="radio" th:field="*{grade}">
-                                  <label aria-label="3 stars" class="rating-label" for="rating3-3">
-                                      <i class="rating-icon rating-icon-star fa fa-star"></i>
-                                  </label>
-                                  <input class="rating-input" id="rating3-3" value="3" type="radio" th:field="*{grade}">
-                                  <label aria-label="4 stars" class="rating-label" for="rating3-4">
-                                      <i class="rating-icon rating-icon-star fa fa-star"></i>
-                                  </label>
-                                  <input class="rating-input" id="rating3-4" value="4" type="radio" th:field="*{grade}">
-                                  <label aria-label="5 stars" class="rating-label" for="rating3-5">
-                                      <i class="rating-icon rating-icon-star fa fa-star"></i>
-                                  </label>
-                                  <input class="rating-input" id="rating3-5" value="5" type="radio" th:field="*{grade}">
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row py-2">
-                          <label class="col-sm-10 col-form-label lead letraNav" for="melhoria"
-                                 >Sugestão de melhoria</label>
+                        <label class="col-sm-10 col-form-label lead letraNav" for="melhoria"
+                        >Sugestão de melhoria</label>
 
-                              <textarea class="form-control" id="melhoria" rows="4" th:field="*{improvement_suggestion}" ></textarea>
+                        <textarea class="form-control" id="melhoria" rows="4"
+                                  th:field="*{improvement_suggestion}"></textarea>
 
-                      </div>
-                      <button type="submit" class="btn btn-nav py-2 mt-4 border border-dark letraNav"><strong>Enviar Feedback</strong>
-                      </button>
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-nav py-2 mt-4 border border-dark letraNav"><strong>Enviar
+                        Feedback</strong>
+                    </button>
 
-                  </form>
-              </div>
-          </main>
-      </section>
-  </section>
+                </form>
+            </div>
+        </main>
+    </section>
+</section>
 
-  <!--<th:block layout:fragment="javascript">
-      <script type="text/javascript" th:src="@{../static/js/melodyController.js}"></script>
-  </th:block>-->
+<th:block layout:fragment="javascript">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/melodyController.js}"></script>
+</th:block>
 
 </body>
 </html>

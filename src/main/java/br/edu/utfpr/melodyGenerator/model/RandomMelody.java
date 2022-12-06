@@ -16,7 +16,7 @@ public class RandomMelody {
     private String instrumentName = "";
     private String melody;
     private final Random r = new Random();
-    private float length = 4;
+    private float length;
     private int bpm;
     private int octaveInterval;
     private float octaveShiftProbability;
@@ -35,6 +35,7 @@ public class RandomMelody {
             put("F MAJOR", new String[]{"F", "G", "A", "Bb", "C", "D", "E"});
             put("G MAJOR", new String[]{"G", "A", "B", "C", "D", "E", "F#"});
             put("A MAJOR", new String[]{"A", "B", "C", "D", "E", "F#", "G#"});
+            put("B MAJOR", new String[]{"B", "C#", "D", "E", "F#", "G", "A"});
             put("C MINOR", new String[]{"C", "D", "Eb", "F", "G", "Ab", "Bb"});
             put("D MINOR", new String[]{"D", "E", "F", "G", "A", "Bb", "C"});
             put("E MINOR", new String[]{"E", "F#", "G", "A", "B", "C", "D"});

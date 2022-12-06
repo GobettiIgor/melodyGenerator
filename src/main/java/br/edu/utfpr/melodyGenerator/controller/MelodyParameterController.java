@@ -22,6 +22,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("generateMelody")
@@ -39,21 +40,14 @@ public class MelodyParameterController {
     @Autowired
     private MelodyService melodyService;
 
-    /*@GetMapping
-    public String gerarMelodia(Model model) {
-        model.addAttribute("melodia", new Melodia());
-        return "generateMelody.html";
-    }*/
-
     @GetMapping(value = {""})
-    public String generateMelody(Model model) {
+    public String generateMelody(Model model, RedirectAttributes attributes) {
         model.addAttribute("melodyParameter", new MelodyParameter());
-        return "generateMelody.html";
-    }
 
-    @GetMapping(value = {"/top10"})
-    public String top10() {
-        return "redirect:/top10";
+        attributes.addFlashAttribute("sucesso",
+                "Registro salvo com sucesso!");
+
+        return "generateMelody.html";
     }
 
 /*
@@ -78,22 +72,35 @@ public class MelodyParameterController {
                          BindingResult result,
                          Model model,
                          RedirectAttributes attributes) {
-        if (result.hasErrors()) {
+       /* if (result.hasErrors()) {
             model.addAttribute("melodyParameter", melodyParameter);
             return "melodyParameter/form";
-        }
+        }*/
 
         //String scale = melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type();
 
-        RandomMelody randomMelody = new RandomMelody(new ArrayList<String>(Arrays.asList(RandomMelody.keys.get("G MAJOR"))));
+        /*String teste = new String(melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type());
 
-        /*String scale = melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type();
+        RandomMelody randomMelody = new RandomMelody(new ArrayList<String>(Arrays.asList(RandomMelody.keys.get(teste))));*/
+/*
+        RandomMelody randomMelody = new RandomMelody();
 
-        RandomMelody randomMelody = new RandomMelody(new ArrayList<String>(Arrays.asList(RandomMelody.keys.get(scale))));*/
+        //List<String> lista = new ArrayList<String>(List.of(randomMelody.keys.get(melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type())));
+       // List<String[]> list = List.<String[]>of(randomMelody.keys.get(melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type()));
+        String[] array = new String[100];
+
+        randomMelody.setNotes(Arrays.asList(randomMelody.keys.get(teste)));*/
+
+
+       // randomMelody.setNotes(array);
+
+        //String scale = melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type();
+        RandomMelody randomMelody = new RandomMelody(new ArrayList<String>(Arrays.asList(RandomMelody.keys.get(melodyParameter.getMain_note_scale() + " " + melodyParameter.getScale_type()))));
 
         randomMelody.setMainInstrumentName(melodyParameter.getInstrument_name());
         randomMelody.setOctaveInterval(melodyParameter.getQty_octaves());
         randomMelody.setBpm(melodyParameter.getBpm());
+        randomMelody.setLength(melodyParameter.getQty_repetitions());
 
         generateMelodyService.createMelody(randomMelody);
 

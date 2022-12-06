@@ -1,0 +1,95 @@
+@media only screen and (min-width: 360px) and (max-width: 1020px) {
+    .title-melody {
+        font-size: 12px !important;
+        margin-left: 0% !important;
+        margin-right: 0% !important;
+    }
+
+    .menu {
+        margin-left: 25% !important;
+        margin-right: 25% !important;
+    }
+
+    .letraNav {
+        font-size: 12px !important;
+    }
+
+    .text-footer {
+        font-size: 10px !important;
+    }
+
+    footer, form {
+        margin-left: 0% !important;
+        margin-right: 0% !important;
+    }
+
+    h1 {
+        font-size: 16px !important;
+    }
+    form{
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        justify-content: center !important;
+    }
+    h5{
+        font-size: 12px !important;
+    }
+    .containerPrincipal{
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding-top: 2% !important;
+        padding-right: 2% !important;
+        padding-left: 2% !important;
+        padding-bottom: 2% !important;
+        border: none !important;
+    }
+    .form-control{
+        justify-content: center !important;
+        width: 70% !important;
+        margin-left: 15% !important;
+        font-size: 14px !important;
+    }
+    .cp{
+        margin-left: 0% !important;
+        margin-right: 0% !important;
+        height: 100% !important;
+    }
+    h4{
+        font-size: 16px !important;
+    }
+    .controls{
+        width: 80% !important;
+    }
+    main{
+        height: 100% !important;
+    }
+    .html{
+        height: 100%;
+    }
+    #form{
+        height: 65% !important;
+    }
+    table{
+        font-size: 12px !important;
+    }
+    .player{
+        width: 10% !important;
+    }
+    .top{
+        position: absolute !important;
+        left: -9999px !important;
+    }
+    th{
+        width: 30% !important;
+    }
+    .controls{
+        width: 12% !important;
+    }
+    .midi-player{
+        width: 30px !important;
+    }
+}

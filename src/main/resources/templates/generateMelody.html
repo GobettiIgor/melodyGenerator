@@ -11,7 +11,7 @@
     <section class="containerPrincipal d-flex mx-auto flex-column w-100 h-100 p-3 navColor">
         <main role="main" class="inner cover">
             <!--/*@thymesVar id="melodyParameter" type="br.edu.utfpr.melodyGenerator.model.MelodyParameter"*/-->
-            <form class="rounded py-3" th:action="@{/generateMelody}" method="post"
+            <form id="parameters" class="rounded py-3" th:action="@{/generateMelody}" method="post"
                   th:object="${melodyParameter}">
                 <div class="form-group row py-2">
                     <h5 class="brown-color">Informe os parâmetros abaixo para gerar a melodia!</h5>
@@ -20,7 +20,7 @@
                     <label class="col-sm-6 col-form-label lead letraNav"
                            for="controlSelect1">Nome</label>
                     <div class="col-sm-5 mr-2 justify-content-center">
-                        <input placeholder="Seu nome" id="controlSelect1" class="form-control text-center"
+                        <input name="username" placeholder="Seu nome" id="controlSelect1" class="form-control text-center"
                                th:field="*{username}" type="text"/>
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                     <div class="col-sm-5 mr-2 justify-content-center">
                         <select id="controlSelect4" class="form-control text-center" th:field="*{scale_type}"
                                 aria-label="Selecione a nota base">
-                            <option value="Major">Maior</option>
-                            <option value="Menor">Menor</option>
+                            <option value="MAJOR">Maior</option>
+                            <option value="MINOR">Menor</option>
                         </select>
                     </div>
                 </div>
@@ -71,9 +71,8 @@
                     <label class="col-sm-6 col-form-label lead letraNav"
                            for="controlSelect5">BPM</label>
                     <div class="col-sm-5 mr-2 justify-content-center">
-                        <input placeholder="Batimentos por minuto" id="controlSelect5" class="form-control text-center"
-                               th:field="*{bpm}" type="number" value="120" min="20"
-                               max="1000" step="1"/>
+                        <input name="bpm" placeholder="Batimentos por minuto" id="controlSelect5" class="form-control text-center"
+                               th:field="*{bpm}" type="number" step="1"/>
                     </div>
                 </div>
                 <div class="form-group row py-2">
@@ -96,9 +95,8 @@
                     <label class="col-sm-6 col-form-label lead letraNav"
                            for="controlSelect7">Qtd. repetições</label>
                     <div class="col-sm-5 mr-2 justify-content-center">
-                        <input placeholder="Quantidade de repetições" id="controlSelect7"
-                               class="form-control text-center" th:field="*{qty_repetitions}" type="number" value="5"
-                               min="1" max="100" step="1"/>
+                        <input name="qtdRep" placeholder="Quantidade de repetições" id="controlSelect7"
+                               class="form-control text-center" th:field="*{qty_repetitions}" type="number" value="1" step="1"/>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-nav py-2 mt-4 border border-dark letraNav"><strong>Gerar</strong>
@@ -174,12 +172,14 @@
                     </div>
                   </div>
                 </div>-->
-              </form>
+            </form>
         </main>
     </section>
 </section>
-<!--<th:block layout:fragment="javascript">
-  <script type="text/javascript" th:src="@{/js/crud-melodyParameter.js}"></script>
-</th:block> -->
+<th:block layout:fragment="javascript">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script type="text/javascript" th:src="@{/js/validate.js}"></script>
+</th:block>
 </body>
 </html>
